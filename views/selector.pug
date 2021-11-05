@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  - var image_names = ["American-rabbit1.jpg","European-rabbit2.jpg","havana-rabbit3.jpg","Rabbit_4.jpg","rabbit_5.jpg"] 
+  - let i = 3
+  -while(i--)
+     //- iterate here
+     -let value=Math.floor(Math.random()*5);
+     img(src=`/images/${image_names[value]}` alt=`Rabbit images ${value}` height="300px" width="300px")

@@ -1,0 +1,25 @@
+{
+  "name": "fwb12chunchu",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "^4.3.2",
+    "express": "^4.17.1",
+    "http-errors": "^1.8.0",
+    "mongodb": "^4.1.4",
+    "mongoose": "^6.0.12",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2"
+  },
+  "description": "\u001b[A\u001b[D\u001b[5\u001b[C\u001b[5\u001b[C\u001b[5 welcome to my timeline",
+  "main": "\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C",
+  "keywords": [
+    "\u001b[A\u001b[B12345"
+  ],
+  "author": "vijay",
+  "license": "ISC"
+}
