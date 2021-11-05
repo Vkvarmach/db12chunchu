@@ -1,8 +1,5 @@
 # fwb12chunchu
-assignment_10
+assignment_11
 Learning code is my passion
 
-Hosted at https://vijaykumar96.herokuapp.com/
-
-Class: Rabbit
-Attributes : breed(String),Lifespan_years(numbers),color(String)
+Hosted at https://db12chunchu.herokuapp.com/
