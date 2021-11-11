@@ -11,7 +11,7 @@ var RabbitRouter = require('./routes/Rabbit');
 var addmodsRouter = require('./routes/addmods');
 var slectorRouter = require('./routes/selector');
 var rabbit = require("./models/Rabbit");
-
+var resourceRouter=require('./routes/resource');
 var app = express();
 
 // view engine setup
@@ -29,7 +29,7 @@ app.use('/users', usersRouter);
 app.use('/Rabbit', RabbitRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', slectorRouter);
-
+app.use('/resource', resourceRouter);
 
 
 // catch 404 and forward to error handler
@@ -61,7 +61,7 @@ async function recreateDB(){
  
   var results = [{"type":"European rabbit","colours":'brown',"lifespan":09},
                  {"type":"American rabbit","colours":'white',"lifespan":08},
-                 {"type":"havana", "colours":'black',"lifespan":10}]
+                 {"type":"havana",         "colours":'black',"lifespan":10}]
  
  for(i in results){
   let instance = new rabbit({types: results[i]["type"], colours: results[i]["colours"], lifespan:results[i]["lifespan"]});

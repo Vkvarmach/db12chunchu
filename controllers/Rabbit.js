@@ -34,8 +34,8 @@ exports.rabbit_create_post = async function(req, res) {
     // Even though bodies can be in many different formats, we will be picky 
     // and require that it be a json object 
     // {"costume_type":"goat", "cost":12, "size":"large"} 
-    document.types = req.body.types; 
-    document.colours = req.body.colours; 
+    document.type= req.body.type; 
+    document.colour = req.body.colour; 
     document.lifespan = req.body.lifespan; 
     try{ 
         let result = await document.save(); 
@@ -48,14 +48,14 @@ exports.rabbit_create_post = async function(req, res) {
 }; 
 
 // for a specific Rabbit.
-exports.Rabbit_detail = function(req, res) {
+exports.rabbit_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: Rabbit detail: ' + req.params.id);
 };
 // Handle Rabbit delete form on DELETE.
-exports.Rabbit_delete = function(req, res) {
+exports.rabbit_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: Rabbit delete DELETE ' + req.params.id);
 };
 // Handle Rabbit update form on PUT.
-exports.Rabbit_update_put = function(req, res) {
+exports.rabbit_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: Rabbit update PUT' + req.params.id);
 };
