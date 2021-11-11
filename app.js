@@ -59,12 +59,12 @@ async function recreateDB(){
   await rabbit.deleteMany();
  
  
-  var results = [{"type":"European rabbit","colours":'brown',"lifespan":09},
-                 {"type":"American rabbit","colours":'white',"lifespan":08},
-                 {"type":"havana",         "colours":'black',"lifespan":10}]
+  var results = [{"type":"European rabbit","colour":"brown","lifespan":09},
+                 {"type":"American rabbit","colour":"white","lifespan":08},
+                 {"type":"havana","colour":"black","lifespan":10}]
  
  for(i in results){
-  let instance = new rabbit({types: results[i]["type"], colours: results[i]["colours"], lifespan:results[i]["lifespan"]});
+  let instance = new rabbit({type: results[i]["type"], colour: results[i]["colour"], lifespan:results[i]["lifespan"]});
    instance.save( function(err,doc) {
      if(err) return console.error(err);
      console.log("object added.")

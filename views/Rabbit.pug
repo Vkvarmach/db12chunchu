@@ -2,13 +2,13 @@ extends layout
 
 block content
   h1= title
-  - var a=0
-  each b,index in [["European rabbit",09,"brown"],["American Rabbit",08,"white"],["havana",10,"black"]]
+  - var a= results
+  each b,index in a
     div(class ="container-fluid" id="index" onclick=`buy(${index})`)
          div(class="row") 
-           div(class="col-sm-2")   #{b[0]}
-           div(class="col-sm-2")   #{b[1]}
-           div(class="col-sm-2")   #{b[2]}
+           div(class="col-sm-2")   #{b["type"]}
+           div(class="col-sm-2")   #{b["colour"]}
+           div(class="col-sm-2")   #{b["lifespan"]}
            script.
               function buy(item){
                  alert(`purchased item ${item+5}.`)

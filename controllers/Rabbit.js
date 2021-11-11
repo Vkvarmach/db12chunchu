@@ -15,11 +15,11 @@ exports.rabbit_list = async function (req, res) {
     }
 };
 
-exports.Rabbit_view_all_Page = async function(req, res) { 
+exports.rabbit_view_all_Page = async function(req, res) { 
     try{ 
         theRabbits = await Rabbit.find(); 
         console.log(theRabbits)
-        res.render('Rabbit', { title: 'Rabbit Search Results', results: theRabbit }); 
+        res.render('Rabbit', { title: 'Rabbit Search Results', results: theRabbits }); 
     } 
     catch(err){ 
         res.status(500); 
@@ -51,6 +51,8 @@ exports.rabbit_create_post = async function(req, res) {
 exports.rabbit_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: Rabbit detail: ' + req.params.id);
 };
+
+
 // Handle Rabbit delete form on DELETE.
 exports.rabbit_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: Rabbit delete DELETE ' + req.params.id);
