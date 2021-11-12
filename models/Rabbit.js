@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
-const RabbitSchema = mongoose.Schema({
+const rabbitSchema = mongoose.Schema({
 type: String,
 colour : String,
-lifespan: Number
+life: Number
 })
-module.exports = mongoose.model("Rabbit", RabbitSchema)
+module.exports = mongoose.model("Rabbit", rabbitSchema)

@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 var RabbitRouter = require('./routes/Rabbit');
 var addmodsRouter = require('./routes/addmods');
 var slectorRouter = require('./routes/selector');
-var rabbit = require("./models/Rabbit");
+var rabbit = require("./models/rabbit");
 var resourceRouter=require('./routes/resource');
 var app = express();
 
@@ -59,12 +59,12 @@ async function recreateDB(){
   await rabbit.deleteMany();
  
  
-  var results = [{"type":"European rabbit","colour":"brown","lifespan":09},
-                 {"type":"American rabbit","colour":"white","lifespan":08},
-                 {"type":"havana","colour":"black","lifespan":10}]
+  var results = [{"type":"American rabbit","colour":"white","life":09},
+                 {"type":"European rabbit","colour":"brown","life":08},
+                 {"type":"havana","colour":"Black","life":10}]
  
  for(i in results){
-  let instance = new rabbit({type: results[i]["type"], colour: results[i]["colour"], lifespan:results[i]["lifespan"]});
+  let instance = new rabbit({type: results[i]["type"], colour: results[i]["colour"], life:results[i]["life"]});
    instance.save( function(err,doc) {
      if(err) return console.error(err);
      console.log("object added.")

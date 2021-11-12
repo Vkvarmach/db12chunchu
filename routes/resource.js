@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-// Require controller modules
+// Require rabbit_controller modules
 var api_controller = require('../controllers/api');
-var rabbit_controller = require('../controllers/rabbit');
+var rabbit_controller = require('../controllers/Rabbit');
 /// API ROUTE ///
 // GET resources base.
 router.get('/', api_controller.api);
@@ -11,7 +11,7 @@ router.get('/', api_controller.api);
 // POST request for creating a rabbit.
 router.post('/rabbit', rabbit_controller.rabbit_create_post);
 // DELETE request to delete rabbit.
-router.delete('/rabbitss/:id', rabbit_controller.rabbit_delete);
+router.delete('/rabbit/:id', rabbit_controller.rabbit_delete);
 // PUT request to update rabbit.
 router.put('/rabbit/:id', rabbit_controller.rabbit_update_put);
 // GET request for one rabbit.

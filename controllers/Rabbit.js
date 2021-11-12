@@ -1,13 +1,43 @@
-const Rabbits = require('../models/Rabbit');
-var Rabbit = require('../models/Rabbit');
-//module.exports = mongoose.model("Rabbit", RabbitSchema)
 
-
-// List of all Rabbit
+var rabbit = require('../models/rabbit');
+//module.exports = mongoose.model("rabbit", rabbitSchema)
+// List of all rabbits
 exports.rabbit_list = async function (req, res) {
     try {
-        theRabbit = await Rabbits.find();
-        res.send(theRabbit);
+        therabbits = await rabbit.find();
+        res.send(therabbits);
+    }
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
+//used for rabbit get one
+exports.rabbit_detail = function (req, res) {
+    res.send('NOT IMPLEMENTED: rabbit detail: ' + req.params.id);
+};
+
+//used for rabbit delete one
+exports.rabbit_delete = function (req, res) {
+    res.send('NOT IMPLEMENTED: rabbit delete: ' + req.params.id);
+};
+
+// Handle colourume create on POST.
+exports.rabbit_create_post = async function (req, res) {
+    console.log(req.body)
+    let document = new rabbit();
+    // We are looking for a body, since POST does not have query parameters.
+    // Even though bodies can be in many different formats, we will be picky
+    // and require that it be a json object
+    // {"colourume_type":"goat", "colour":12, "size":"large"}
+    document.type = req.body.type;
+    document.colour = req.body.colour;
+    document.life = req.body.life;
+    console.log(rabbit);
+    console.log(req.body);
+    try {
+        let result = await document.save();
+        res.send(result);
     }
     catch (err) {
         res.status(500);
@@ -15,49 +45,58 @@ exports.rabbit_list = async function (req, res) {
     }
 };
 
-exports.rabbit_view_all_Page = async function(req, res) { 
-    try{ 
-        theRabbits = await Rabbit.find(); 
-        console.log(theRabbits)
-        res.render('Rabbit', { title: 'Rabbit Search Results', results: theRabbits }); 
+// VIEWS
+// Handle a show all view
+exports.rabbit_view_all_Page = async function(req, res) {
+    try {
+        therabbits = await rabbit.find();
+        res.render('rabbit', { title: 'rabbit Search Results', results: therabbits });
+    } catch (err) {
+        res.send(`{"error": ${err}}`)
+        res.status(500);
+    }
+};
+
+exports.rabbit_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await rabbit.findById(req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
     } 
-    catch(err){ 
-        res.status(500); 
-        res.send(`{"error": ${err}}`); 
-    }   
 }; 
 
-exports.rabbit_create_post = async function(req, res) { 
-    console.log(req.body) 
-    let document = new Rabbit(); 
-    // We are looking for a body, since POST does not have query parameters. 
-    // Even though bodies can be in many different formats, we will be picky 
-    // and require that it be a json object 
-    // {"costume_type":"goat", "cost":12, "size":"large"} 
-    document.type= req.body.type; 
-    document.colour = req.body.colour; 
-    document.lifespan = req.body.lifespan; 
-    try{ 
-        let result = await document.save(); 
-        res.send(result); 
+
+// Handle colourume update form on PUT.
+exports.rabbit_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await rabbit.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.colour)  
+               toUpdate.colour = req.body.colour; 
+        if(req.body.type) toUpdate.type = req.body.type; 
+        if(req.body.life) toUpdate.life = req.body.life; 
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
     } 
-    catch(err){ 
-        res.status(500); 
-        res.send(`{"error": ${err}}`); 
-    }   
-}; 
-
-// for a specific Rabbit.
-exports.rabbit_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: Rabbit detail: ' + req.params.id);
 };
-
-
-// Handle Rabbit delete form on DELETE.
-exports.rabbit_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: Rabbit delete DELETE ' + req.params.id);
-};
-// Handle Rabbit update form on PUT.
-exports.rabbit_update_put = function(req, res) {
-res.send('NOT IMPLEMENTED: Rabbit update PUT' + req.params.id);
-};
+// for a specific Costume.
+exports.costume_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await Costume.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+   };
