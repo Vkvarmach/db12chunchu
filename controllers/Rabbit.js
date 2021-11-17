@@ -18,8 +18,16 @@ exports.rabbit_detail = function (req, res) {
 };
 
 //used for rabbit delete one
-exports.rabbit_delete = function (req, res) {
-    res.send('NOT IMPLEMENTED: rabbit delete: ' + req.params.id);
+exports.rabbit_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await rabbit.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
 };
 
 // Handle colourume create on POST.
@@ -90,7 +98,7 @@ failed`);
     } 
 };
 // for a specific Costume.
-exports.costume_detail = async function(req, res) {
+exports.rabbit_detail = async function(req, res) {
     console.log("detail" + req.params.id)
     try {
     result = await Costume.findById( req.params.id)
