@@ -1,0 +1,53 @@
+extends layout
+
+block content
+  h1= title
+
+  if (toShow == null)
+    h2 No instance to delete
+  else
+  - let rabbitid = toShow._id
+  - let type = toShow.type
+  - let colour = toShow.colour
+  - let life = toShow.life
+  - let actionid = "/resource/rabbit/" + rabbitid
+  script let actionid = "#{actionid}"
+  div
+    div.row
+      div(class='rabbitAttr mr-3') Rabbit ID is:
+      div #{rabbitid}
+    div.row
+      div(class='rabbitAttr mr-3') Rabbit Type is:
+      div #{type}
+    div.row
+      div(class='rabbitAttr mr-3') Rabbit Colour is:
+      div #{colour}
+    div.row
+      div(class='rabbitAttr mr-3') Rabbit Life is:
+      div #{life}
+
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+  script.
+    function cancel() {
+      // Go back to the home page for the rabbit collection
+      window.location.href='/rabbit'
+    }
+  script.
+    function deleteOnid() {
+      console.log("starting delete")
+      // delete first
+      fetch(actionid, {
+        method: 'DELETE'      // Don't need a body for the delete
+      }).then((resp) => {
+        return resp.text(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Delete succeded")
+        window.location.href='/resource/rabbit'
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Delete failed " + error )
+      });
+    } 

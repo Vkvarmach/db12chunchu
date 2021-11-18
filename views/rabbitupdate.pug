@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1= title
+
+  - let rabbitid = toShow._id
+  - let type = toShow.type
+  - let colour = toShow.colour
+  - let life = toShow.life
+
+  div.row(class='mb-2')
+  div.mr-1 ID is
+  div #{rabbitid}
+  - let actionid = "/resource/rabbit/" + rabbitid
+  form(id='RabbitForm',  action= actionid, method="PUT")
+    div.form-group
+        label.rabbitAttr(for='type') Rabbit Type
+        input#type(type='text', name='type', value=type)
+    div.form-group
+        label.rabbitAttr(for='colour') Rabbit Colour
+        input#colour(type='text', name='colour', value=colour)
+    div.form-group
+        label.rabbitAttr(for='life') Rabbit Life
+        input#life(type='number', name='life', value=life)
+    input.button(type="submit")
+
+  script. 
+    document.forms['RabbitForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'POST', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.text(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Save succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Save failed " + error ) 
+      }); 
+    });  

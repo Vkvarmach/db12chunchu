@@ -4,6 +4,7 @@ var router = express.Router();
 // Require rabbit_controller modules
 var api_controller = require('../controllers/api');
 var rabbit_controller = require('../controllers/Rabbit');
+
 /// API ROUTE ///
 // GET resources base.
 router.get('/', api_controller.api);
@@ -20,4 +21,14 @@ router.get('/rabbit/:id', rabbit_controller.rabbit_detail);
 router.get('/rabbit', rabbit_controller.rabbit_list);
 /* GET detail rabbit page */
 
-module.exports = router;
+/* GET detail rabbit page */ 
+router.get('/detail', rabbit_controller.rabbit_view_one_Page); 
+
+router.get('/create', rabbit_controller.rabbit_create_Page);
+
+router.get('/update', rabbit_controller.rabbit_update_Page);
+
+router.get('/delete', rabbit_controller.rabbit_delete_Page);
+
+
+module.exports = router; 
