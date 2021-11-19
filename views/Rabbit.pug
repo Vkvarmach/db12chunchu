@@ -3,13 +3,14 @@ extends layout
 block content
   h1= title
   - var a= results
-  each b,index in a
+  
     div(class ="container-fluid" id="index" onclick=`buy(${index})`)
-         div(class="row") 
-           div(class="col-sm-2")   #{b["type"]}
-           div(class="col-sm-2")   #{b["colour"]}
-           div(class="col-sm-2")   #{b["life"]}
-           script.
-              function buy(item){
-                 alert(`purchased item ${item+5}.`)
-                } 
+      div(class="row m-1")
+        each result,index in results
+          - let destination = `dispatch(\"/rabbit/update?id=${result._id}\")`
+          div(class="col-sm-4")  #{result.type} - #{result.name} - #{result.cost}
+            button.btn( class="btn-primary" class="btn-toolbar", onclick= destination) Update
+  script. 
+    function dispatch(path){ 
+      window.location.href=path 
+     } 
