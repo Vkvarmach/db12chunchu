@@ -1,18 +1,12 @@
-extends layout
-
-block content
-  h1= title
-  p Hello Welcome to vijay kumar's timeline #{title}
-  button(type="button",onclick="update()",class="btn btn-secondary") PressMe
-  <br>
-
-  div(id="target") Display
-  script.
-        let client_count=0;
-        function update()
-         {
-            client_count=client_count+1;
-            document.getElementById("target").innerHTML =client_count;
-
-         };
-   client_count(href="https://vijaykumar96.herokuapp.com/Rabbit") link to array 
+extends layout 
+ 
+block content 
+  if (!user) 
+    a(href="/login") Login 
+    br 
+    a(href="/register") Register 
+  if (user) 
+    p You are currently logged in as #{user.username} 
+    a(href="/Rabbit") Take me to Rabbits
+    br 
+    a(href="/logout") Logout 
