@@ -97,11 +97,11 @@ ${JSON.stringify(req.body)}`)
 failed`); 
     } 
 };
-// for a specific Costume.
+// for a specific Rabbit.
 exports.rabbit_detail = async function(req, res) {
     console.log("detail" + req.params.id)
     try {
-    result = await Costume.findById( req.params.id)
+    result = await Rabbit.findById( req.params.id)
     res.send(result)
     } catch (error) {
     res.status(500)
@@ -123,7 +123,7 @@ exports.rabbit_view_one_Page = async function(req, res) {
     }
    }; 
 
-// Handle building the view for creating a costume. 
+// Handle building the view for creating a Rabbit. 
 // No body, no in path parameter, no query. 
 // Does not need to be async 
 exports.rabbit_create_Page =  function(req, res) { 
