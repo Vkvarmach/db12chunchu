@@ -2,9 +2,10 @@ extends layout
 
 block content
   h1= title
-  - var a= results
-  
-    div(class ="container-fluid" id="index" onclick=`buy(${index})`)
+   - let createView = `dispatch(\"rabbit/create\")` 
+   button.btn(class="btn-primary m1-2", onclick=createView) Create
+   - var a= results
+   div(class ="container-fluid" id="index" onclick=`buy(${index})`)
       div(class="row m-1")
         each result,index in results
           - let destination = `dispatch(\"/rabbit/update?id=${result._id}\")`

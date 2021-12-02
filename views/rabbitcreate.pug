@@ -12,7 +12,8 @@ block content
         input#colour(type='text', name='colour')
     div.form-group
         label.rabbitAttr(for='age') Rabbit Life
-        input#life(type='number', name='life')
+        //input#life(type='number', name='life')
+        input#age(type='number', name='age' min=0, max=40)
     input.button(type="submit")
 
   script. 
@@ -26,6 +27,7 @@ block content
         return resp.text(); // or resp.text() or whatever the server sends 
       }).then((body) => { 
         alert("Save succeded") 
+        alert("Animal cost should be minimum of $45")
         // TODO handle body 
       }).catch((error) => { 
         // TODO handle error 
